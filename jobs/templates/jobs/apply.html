@@ -1,0 +1,6 @@
+<h2>Apply for a Job</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Application</button>
+</form>
