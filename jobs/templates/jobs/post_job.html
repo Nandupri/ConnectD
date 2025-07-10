@@ -1,6 +1,10 @@
-<h2>Post a Job</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Submit Job</button>
-</form>
+
+<link rel="stylesheet" href="/static/jobs/auth.css" />
+<div class="auth-container">
+  <h2>Post a Job</h2>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Submit Job</button>
+  </form>
+</div>

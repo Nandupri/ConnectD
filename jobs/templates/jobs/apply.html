@@ -1,6 +1,10 @@
-<h2>Apply for a Job</h2>
+{% extends 'jobs/base_auth.html' %}
+{% block title %}Apply for {{ job.title }} | ConnectD{% endblock %}
+{% block content %}
+<h2>Apply for <span style="color:#3a5ca8">{{ job.title }}</span> at <span style="color:#00adb5">{{ job.company }}</span></h2>
 <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit Application</button>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit Application</button>
 </form>
+{% endblock %}

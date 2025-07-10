@@ -1,0 +1,91 @@
+/* Anime-inspired admin custom CSS */
+body.login,
+body {
+  background: linear-gradient(
+    -45deg,
+    #232526,
+    #ffb6b9,
+    #6a82fb,
+    #fc5c7d,
+    #485563
+  );
+  background-size: 400% 400%;
+  animation: gradientBG 16s ease infinite;
+  min-height: 100vh;
+}
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#header,
+.module caption,
+.breadcrumbs,
+.login .form-row label {
+  font-family: "Comic Neue", "Segoe UI", Arial, sans-serif;
+  color: #ff66cc !important;
+  letter-spacing: 1px;
+}
+
+#header {
+  background: rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid #ff66cc;
+}
+
+#user-tools {
+  color: #fff !important;
+}
+
+.module,
+.login .form-row {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(60, 90, 130, 0.1);
+}
+
+.button,
+input[type="submit"],
+.submit-row input {
+  background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.15s;
+}
+.button:hover,
+input[type="submit"]:hover,
+.submit-row input:hover {
+  background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+  transform: scale(1.04);
+}
+
+/* Add a subtle anime sparkle overlay */
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("https://pngimg.com/d/sparkle_PNG76016.png") repeat;
+  opacity: 0.1;
+  z-index: 9999;
+  animation: sparkleMove 30s linear infinite;
+}
+@keyframes sparkleMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 400px 400px;
+  }
+}

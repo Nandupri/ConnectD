@@ -1,0 +1,58 @@
+{% extends 'jobs/base_auth.html' %}
+{% block title %}Profile | ConnectD{% endblock %}
+{% block content %}
+  <h2>My Profile</h2>
+  <div class="profile-card">
+    <p><b>Username:</b> {{ user.username }}</p>
+    <p><b>Email:</b> {{ user.email }}</p>
+    <h4 class="mt-4">Jobs Applied</h4>
+    <ul class="applied-list">
+      {% for resume in resumes %}
+        <li>
+          <b>{{ resume.job.title }}</b> at {{ resume.job.company }} ({{ resume.job.location }})
+          <span class="applied-date">applied on {{ resume.applied_on|date:"M d, Y" }}</span>
+        </li>
+      {% empty %}
+        <li>No applications yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+{% block extra_css %}
+<style>
+.profile-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.18);
+  padding: 32px 24px 24px 24px;
+  margin: 0 auto;
+  max-width: 420px;
+  animation: fadeInUp 1.1s cubic-bezier(.39,.575,.56,1.000);
+}
+.profile-card p {
+  color: #232931;
+  font-size: 1.08rem;
+  margin-bottom: 8px;
+}
+.applied-list {
+  list-style: none;
+  padding: 0;
+}
+.applied-list li {
+  background: #f7f9fd;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  color: #3a5ca8;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.applied-date {
+  color: #888;
+  font-size: 0.98rem;
+  font-weight: 400;
+}
+</style>
+{% endblock %}

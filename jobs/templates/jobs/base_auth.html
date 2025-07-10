@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}ConnectD{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="/static/jobs/favicon.ico" />
+    <link rel="stylesheet" href="/static/jobs/auth.css" />
+    <link rel="stylesheet" href="/static/jobs/toasts.css" />
+    <style>
+      /* Animated gradient background */
+      body {
+        background: linear-gradient(-45deg, #232526, #414345, #485563, #29323c);
+        background-size: 400% 400%;
+        animation: gradientBG 12s ease infinite;
+      }
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+    {% block extra_css %}{% endblock %}
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 18px;">
+      <img src="/static/jobs/logo.png" alt="ConnectD Logo" style="height: 54px; margin-top: 32px; margin-bottom: 8px; filter: drop-shadow(0 2px 8px #0002);">
+    </div>
+    <div class="auth-container">{% block content %}{% endblock %}</div>
+    <script src="/static/jobs/toasts.js"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>

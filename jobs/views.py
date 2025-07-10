@@ -1,3 +1,15 @@
+from django.shortcuts import render
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
+from .models import Resume
+from django.contrib.auth.decorators import login_required
+@login_required
+def profile(request):
+    resumes = Resume.objects.filter(email=request.user.email)
+    return render(request, 'jobs/profile.html', {'user': request.user, 'resumes': resumes})
+def job_detail(request, job_id):
+    job = Job.objects.get(id=job_id)
+    return render(request, 'jobs/job_detail.html', {'job': job})
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
@@ -58,17 +70,24 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
-def apply_job(request):
+
+from django.shortcuts import get_object_or_404
+from .models import Job
+
+def apply_job(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
     if request.method == 'POST':
         form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            subject = f"New Application for {form.instance.job.title}"
-            message = f"{form.instance.name} applied for {form.instance.job.title}. Resume uploaded."
+            resume = form.save(commit=False)
+            resume.job = job
+            resume.save()
+            subject = f"New Application for {job.title}"
+            message = f"{resume.name} applied for {job.title}. Resume uploaded."
             send_mail(subject, message, settings.EMAIL_HOST_USER, ['admin_email@example.com'])
             return redirect('home')
     else:
         form = ResumeForm()
-    return render(request, 'jobs/apply.html', {'form': form})
+    return render(request, 'jobs/apply.html', {'form': form, 'job': job})
 
 
